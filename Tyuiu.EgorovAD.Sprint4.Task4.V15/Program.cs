@@ -1,38 +1,47 @@
-﻿using Tyuiu.EgorovAD.Sprint4.Task3.V11.Lib;
-namespace Tyuiu.EgorovAD.Sprint4.Task3.V11
+﻿using Tyuiu.EgorovAD.Sprint4.Task4.V15.Lib;
+namespace Tyuiu.EgorovAD.Sprint4.Task4.V15
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[,] mas2 = new int[5, 5] {{ 8, 6, 9, 4, 5 },
-                                         { 9, 4, 8, 5, 6 },
-                                         { 9, 7, 9, 8, 4 },
-                                         { 4, 6, 5, 7, 8 },
-                                         { 6, 6, 7, 6, 4 }};
-
-            int rows = mas2.GetUpperBound(0) + 1;
-            int colums = mas2.Length / rows;
-
-
             DataService ds = new DataService();
 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Массив:");
+
+            Console.WriteLine("Введите колво строк в массиве:");
+            int rows = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Введите колво столбов в массиве:");
+            int colums = Convert.ToInt32(Console.ReadLine());
+
+            int[,] matrix = new int[rows, colums];
+
+            Console.WriteLine("***************************************************************************");
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
                 {
-                    Console.WriteLine($"{mas2[i, j]} \t");
+                    Console.WriteLine($"Введите {i}, {j} элемент массива");
+                    matrix[i, j] = Convert.ToInt32(Console.ReadLine());                
+                }                
+            }
+            Console.WriteLine("\n Массив:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < colums; j++)
+                {
+                    Console.Write($"{matrix[i, j]} \t");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Результат:                                                              *");
             Console.WriteLine("***************************************************************************");
-            int res = ds.Calculate(mas2);
+            int res = ds.Calculate(matrix);
             Console.WriteLine();
             Console.WriteLine(res);
         }
